@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kheda District Rainfall Return Period Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .form-container label {
+            font-size: 0.95em;
+            color: #555;
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .form-container input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .info-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            text-align: left;
+            max-width: 500px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .info-section p {
+            font-size: 1em;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .info-section a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <header>
+            <h1>Kheda District Rainfall Return Period Prediction</h1>
+        </header>
+        <h2>Predict the Rainfall Return Period</h2>
+        <form action="/predict" method="post">
+            <div class="tooltip">
+                <label for="Highest_rainfall">Highest Rainfall (mm):</label>
+                <input type="number" name="Highest_rainfall" step="any" placeholder="Enter rainfall in mm" required>
+                <span class="tooltip-text">One day highest rainfall in millimeters</span>
+            </div>
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+
+    <div class="info-section">
+        <h3>Rainfall Susceptibility and Return Period</h3>
+        <p>This model estimates extreme rainfall events for Kheda District using statistical methods like the Gumbel Distribution and Fisher-Tippett Distribution. The model predicts return periods for rainfall events ranging from 100mm to 300mm in a single day.</p>
+        <p>These extreme event predictions help in understanding the likelihood of rare and intense rainfall, which is crucial for disaster management and agricultural planning.</p>
+        <p>For more information on the rainfall susceptibility for Middle Gujarat, visit the <a href="https://shettymainsha.github.io/Rainfall_susceptibility_map/" target="_blank">Rainfall Susceptibility Map</a>.</p>
+    </div>
+
+    <footer>
+        &copy; 2024 Kheda District Rainfall Return Period Prediction Model | All rights reserved.
+    </footer>
+</body>
+
+</html>
